@@ -1,3 +1,43 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sideMenu = document.querySelector('.side-menu');
+  const menuClose = document.querySelector('.menu-close');
+  const overlay = document.querySelector('.overlay');
+  const sideMenuLinks = sideMenu.querySelectorAll('nav a');
+
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.add('active');
+    overlay.classList.add('active');
+  });
+
+  function closeMenu() {
+    sideMenu.classList.remove('active');
+    overlay.classList.remove('active');
+  }
+  menuClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  sideMenuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetEl = document.querySelector(targetId);
+      if(targetEl) {
+        const headerOffset = document.querySelector('.site-header').offsetHeight;
+        const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+      closeMenu(); // 메뉴 닫는 타이밍을 바로 실행
+    });
+  });
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
   const sideMenu = document.querySelector(".side-menu");

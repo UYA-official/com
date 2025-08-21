@@ -1,3 +1,24 @@
+/* 기본적으로 메뉴는 보이도록 */
+.side-menu {
+  display: none; /* 햄버거 눌렀을 때만 보이게 */
+}
+
+.menu-toggle {
+  display: none; /* 기본은 숨김 */
+}
+
+/* 모바일 화면일 때만 햄버거 메뉴 보이게 */
+@media (max-width: 768px) {
+  nav {
+    display: none; /* 작은 화면에서는 nav 숨기고 햄버거만 */
+  }
+
+  .menu-toggle {
+    display: block; /* 작은 화면에서 햄버거 버튼 보임 */
+  }
+}
+
+
 /* 기본 햄버거 버튼 */
 .menu-toggle {
   font-size: 1.8rem;

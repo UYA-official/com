@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.querySelector('.overlay');
   const sideMenuLinks = sideMenu.querySelectorAll('nav a');
 
+  // 메뉴 열기
   menuToggle.addEventListener('click', () => {
     sideMenu.classList.add('active');
     overlay.classList.add('active');
   });
 
+  // 메뉴 닫기
   function closeMenu() {
     sideMenu.classList.remove('active');
     overlay.classList.remove('active');
@@ -17,12 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
   menuClose.addEventListener('click', closeMenu);
   overlay.addEventListener('click', closeMenu);
 
+  // 사이드 메뉴 링크 클릭: 부드럽게 스크롤 + 메뉴 닫기
   sideMenuLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href');
       const targetEl = document.querySelector(targetId);
-      if(targetEl) {
+      if (targetEl) {
         const headerOffset = document.querySelector('.site-header').offsetHeight;
         const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
@@ -32,59 +35,27 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: "smooth"
         });
       }
-      closeMenu(); // 메뉴 닫는 타이밍을 바로 실행
+      closeMenu(); // 메뉴 닫기
     });
   });
-});
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.querySelector(".menu-toggle");
-  const sideMenu = document.querySelector(".side-menu");
-  const closeBtn = document.querySelector(".menu-close");
-  const overlay = document.querySelector(".overlay");
-  const navLinks = sideMenu.querySelectorAll("a");
-
-  // 메뉴 열기
-  toggleBtn.addEventListener("click", () => {
-    sideMenu.classList.add("active");
-    overlay.classList.add("active");
-  });
-
-  // 메뉴 닫기
-  const closeMenu = () => {
-    sideMenu.classList.remove("active");
-    overlay.classList.remove("active");
-  };
-
-  closeBtn.addEventListener("click", closeMenu);
-  overlay.addEventListener("click", closeMenu);
-
-  // 메뉴 클릭하면 닫기
-  navLinks.forEach(link => {
-    link.addEventListener("click", closeMenu);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".container.nav nav");
-
-  toggleBtn.addEventListener("click", () => {
-    nav.classList.toggle("active");
-  });
-});
-document.getElementById('joinForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = Object.fromEntries(fd.entries());
-  // For demo: store into localStorage
-  const key = 'ulsanyouth_join_submissions';
-  const list = JSON.parse(localStorage.getItem(key) || '[]');
-  list.push({ ...data, ts: new Date().toISOString() });
-  localStorage.setItem(key, JSON.stringify(list));
-  const status = document.getElementById('formStatus');
-  status.textContent = '신청이 저장되었습니다 (임시 저장: 브라우저 로컬)';
-  e.target.reset();
-  setTimeout(()=> status.textContent = '', 4000);
+  // 기존 회원/참여 폼 저장 코드
+  const joinForm = document.getElementById('joinForm');
+  if(joinForm){
+    joinForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const data = Object.fromEntries(fd.entries());
+      const key = 'ulsanyouth_join_submissions';
+      const list = JSON.parse(localStorage.getItem(key) || '[]');
+      list.push({ ...data, ts: new Date().toISOString() });
+      localStorage.setItem(key, JSON.stringify(list));
+      const status = document.getElementById('formStatus');
+      if(status){
+        status.textContent = '신청이 저장되었습니다 (임시 저장: 브라우저 로컬)';
+        e.target.reset();
+        setTimeout(()=> status.textContent = '', 4000);
+      }
+    });
+  }
 });

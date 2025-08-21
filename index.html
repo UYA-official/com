@@ -10,51 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- 푸터 포함 모바일 대응 CSS -->
+  <!-- 푸터 링크 간단 스타일 (styles.css 수정 없이 사용 가능) -->
   <style>
-    /* 푸터 레이아웃 */
-    .footer-flex {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap; /* 모바일에서 줄바꿈 */
-      padding: 16px 0;
-    }
-
-    .footer-flex small {
-      margin-right: auto;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      color: #555;
-      display: flex;
-      align-items: center; /* 이미지+텍스트 가운데 정렬 */
-      flex-shrink: 0; /* 이미지가 줄어들지 않도록 */
-    }
-
-    .footer-links a img {
-      height: 24px;
-      margin-right: 6px;
-    }
-
-    .footer-links a:hover {
-      color: #111;
-      text-decoration: underline;
-    }
-
-    /* 모바일 대응 */
-    @media (max-width: 480px) {
-      .footer-links a {
-        font-size: 0.85rem;
-      }
-      .footer-links a img {
-        height: 20px;
-      }
-    }
+    .footer-flex { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-flex small { margin-right:auto; }
+    .footer-links a { text-decoration:none; font-size:.9rem; color:#555; }
+    .footer-links a:hover { color:#111; text-decoration:underline; }
   </style>
 </head>
 <body>
@@ -77,7 +38,6 @@
   </header>
 
   <main>
-    <!-- 홈 -->
     <section id="home" class="hero">
       <div class="container">
         <h1>울산의 미래, 청년과 함께</h1>
@@ -89,7 +49,6 @@
       </div>
     </section>
 
-    <!-- 소개 -->
     <section id="about" class="section">
       <div class="container grid-2">
         <div>
@@ -112,7 +71,6 @@
       </div>
     </section>
 
-    <!-- 주요 사업 -->
     <section id="projects" class="section alt">
       <div class="container">
         <h2>주요 사업</h2>
@@ -133,7 +91,6 @@
       </div>
     </section>
 
-    <!-- 소식 -->
     <section id="news" class="section">
       <div class="container">
         <h2>공지 & 소식</h2>
@@ -150,7 +107,7 @@
       </div>
     </section>
 
-    <!-- 조직도 -->
+    <!-- 조직도 섹션 -->
     <section id="orgchart" class="section">
       <div class="container">
         <h2>조직도</h2>
@@ -161,7 +118,6 @@
       </div>
     </section>
 
-    <!-- 참여 신청 -->
     <section id="join" class="section alt">
       <div class="container">
         <h2>회원/참여 신청</h2>
@@ -199,7 +155,6 @@
       </div>
     </section>
 
-    <!-- 문의 -->
     <section id="contact" class="section">
       <div class="container grid-2">
         <div>
@@ -216,20 +171,21 @@
     </section>
   </main>
 
-  <!-- 푸터 -->
+  <!-- 푸터: 국세청(홈택스) 링크 추가 -->
   <footer class="site-footer">
-    <div class="container footer-flex">
-      <small>© 2025 울산청년연합회 • 울산과 청년을 잇다</small>
-      <div class="footer-links">
-        <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
-           target="_blank" rel="noopener"
-           aria-label="국세청 홈택스 바로가기(새 창)" class="tax-link">
-          <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고" />
-          국세청 홈택스
-        </a>
-      </div>
+  <div class="container footer-flex">
+    <small>© 2025 울산청년연합회 • 울산과 청년을 잇다</small>
+    <div class="footer-links">
+      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
+         target="_blank" rel="noopener"
+         aria-label="국세청 홈택스 바로가기(새 창)" class="tax-link">
+        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고"
+             style="height:24px; vertical-align:middle; margin-right:6px;" />
+        국세청 홈택스
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <script src="script.js"></script>
 </body>

@@ -9,118 +9,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- 푸터 링크 간단 스타일 (styles.css 수정 없이 사용 가능) -->
   <style>
+    /* 푸터 스타일 */
     .footer-flex { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
     .footer-flex small { margin-right:auto; }
     .footer-links a { text-decoration:none; font-size:.9rem; color:#555; }
     .footer-links a:hover { color:#111; text-decoration:underline; }
 
-    /* PC에서는 nav 보이고 햄버거는 숨김 */
-    .main-nav {
-      display: flex;
-      gap: 20px;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
+    /* 네비게이션 */
+    .main-nav { display: flex; gap: 20px; }
+    .menu-toggle { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
 
-    /* 모바일 화면에서는 nav 숨기고 햄버거만 */
     @media (max-width: 768px) {
-      .main-nav {
-        display: none;
-      }
-      .menu-toggle {
-        display: block;
-      }
+      .main-nav { display: none; }
+      .menu-toggle { display: block; }
     }
 
-    /* 사이드 메뉴 & 오버레이 스타일 */
+    /* 사이드 메뉴 */
     .side-menu {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 260px;
-      height: 100%;
+      position: fixed; top: 0; right: -300px;
+      width: 260px; height: 100%;
       background: #fff;
       box-shadow: -2px 0 8px rgba(0,0,0,0.2);
       transition: right 0.3s ease;
       padding: 20px;
       z-index: 1001;
     }
-    .side-menu.active {
-      right: 0;
-    }
-    .side-menu nav {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .menu-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      margin-left: auto;
-      display: block;
-    }
+    .side-menu.active { right: 0; }
+    .side-menu nav { display: flex; flex-direction: column; gap: 16px; }
+    .menu-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; margin-left: auto; display: block; }
+
+    /* 오버레이 */
     .overlay {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0,0,0,0.5);
       display: none;
       z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .overlay.active {
-      display: block;
-    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* 부드러운 스크롤 */
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#home">
-        <img src="assets/logo.jpg" alt="울산청년연합회 로고" />
-        <span></span>
-      </a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <img src="assets/logo.jpg" alt="울산청년연합회 로고" />
+    </a>
 
-      <!-- PC용 nav -->
-      <nav class="main-nav">
-        <a href="#home">홈</a>
-        <a href="#about">소개</a>
-        <a href="#projects">사업</a>
-        <a href="#news">소식</a>
-        <a href="#orgchart">조직도</a>
-        <a href="#join">참여</a>
-        <a href="#contact">문의</a>
-      </nav>
+    <!-- PC 메뉴 -->
+    <nav class="main-nav">
+      <a href="#home">홈</a>
+      <a href="#about">소개</a>
+      <a href="#projects">사업</a>
+      <a href="#news">소식</a>
+      <a href="#orgchart">조직도</a>
+      <a href="#join">참여</a>
+      <a href="#contact">문의</a>
+    </nav>
 
-      <!-- 모바일용 햄버거 버튼 -->
-      <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
-    </div>
+    <!-- 모바일 햄버거 -->
+    <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
+  </div>
 
-    <!-- 모바일용 사이드 메뉴 -->
-    <div class="side-menu">
-      <button class="menu-close" aria-label="메뉴 닫기">×</button>
-      <nav>
-        <a href="#home">홈</a>
-        <a href="#about">소개</a>
-        <a href="#projects">사업</a>
-        <a href="#news">소식</a>
-        <a href="#orgchart">조직도</a>
-        <a href="#join">참여</a>
-        <a href="#contact">문의</a>
-      </nav>
-    </div>
-  </header>
+  <!-- 사이드 메뉴 -->
+  <div class="side-menu">
+    <button class="menu-close" aria-label="메뉴 닫기">×</button>
+    <nav>
+      <a href="#home">홈</a>
+      <a href="#about">소개</a>
+      <a href="#projects">사업</a>
+      <a href="#news">소식</a>
+      <a href="#orgchart">조직도</a>
+      <a href="#join">참여</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- 어두운 배경 -->
-  <div class="overlay"></div>
+<!-- 오버레이 -->
+<div class="overlay"></div>
 
   <main>
     <section id="home" class="hero">
@@ -232,54 +205,61 @@
   </main>
 
   <!-- 푸터: 국세청(홈택스) 링크 추가 -->
-  <footer class="site-footer">
-    <div class="container footer-flex">
-      <small>© 2025 울산청년연합회 • 울산 청년의 중심, 하나의 연합</small>
-      <div class="footer-links">
-        <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
-          target="_blank" rel="noopener"
-          aria-label="국세청 홈택스 바로가기(새 창)" class="tax-link">
-          <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고"
-              style="height:24px; vertical-align:middle; margin-right:6px;" />
-          국세청 홈택스
-        </a>
-      </div>
+ <footer class="site-footer">
+  <div class="container footer-flex">
+    <small>© 2025 울산청년연합회 • 울산 청년의 중심, 하나의 연합</small>
+    <div class="footer-links">
+      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
+        target="_blank" rel="noopener" aria-label="국세청 홈택스 바로가기(새 창)">
+        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고"
+            style="height:24px; vertical-align:middle; margin-right:6px;" />
+        국세청 홈택스
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
 
- <script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const sideMenu = document.querySelector('.side-menu');
-  const menuClose = document.querySelector('.menu-close');
-  const overlay = document.querySelector('.overlay');
-  const sideMenuLinks = sideMenu.querySelectorAll('nav a');
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.querySelector('.side-menu');
+const menuClose = document.querySelector('.menu-close');
+const overlay = document.querySelector('.overlay');
+const sideMenuLinks = sideMenu.querySelectorAll('nav a');
 
-  // 햄버거 메뉴 열기
-  menuToggle.addEventListener('click', () => {
-    sideMenu.classList.add('active');
-    overlay.classList.add('active');
+// 메뉴 열기
+menuToggle.addEventListener('click', () => {
+  sideMenu.classList.add('active');
+  overlay.classList.add('active');
+});
+
+// 메뉴 닫기
+function closeMenu() {
+  sideMenu.classList.remove('active');
+  overlay.classList.remove('active');
+}
+menuClose.addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+
+// 사이드 메뉴 링크 클릭: 부드럽게 스크롤 + 메뉴 닫기
+sideMenuLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetEl = document.querySelector(targetId);
+    if(targetEl) {
+      // 헤더 높이만큼 offset 보정
+      const headerOffset = document.querySelector('.site-header').offsetHeight;
+      const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    setTimeout(closeMenu, 300); // 메뉴 닫힘
   });
-
-  // 닫기 버튼
-  menuClose.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-    overlay.classList.remove('active');
-  });
-
-  // 오버레이 클릭 시 닫기
-  overlay.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-    overlay.classList.remove('active');
-  });
-
-  // 사이드 메뉴 안 링크 클릭 시 닫기
-  sideMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      sideMenu.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-  });
+});
 </script>
-
 </body>
 </html>

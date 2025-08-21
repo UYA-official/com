@@ -1,3 +1,53 @@
+/* 기본 숨김 상태의 오버레이 */
+.menu-overlay {
+  position: fixed;
+  inset: 0; /* top:0, left:0, right:0, bottom:0 */
+  background: rgba(255, 255, 255, 0.9); /* 흰색 반투명 */
+  backdrop-filter: blur(6px); /* 배경 흐림 효과 */
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* 열렸을 때 */
+.menu-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* 닫기 버튼 */
+.menu-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 오버레이 내 메뉴 스타일 */
+.menu-overlay nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menu-overlay nav a {
+  font-size: 1.5rem;
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.menu-overlay nav a:hover {
+  color: #0077ff;
+}
+
 /* nav 기본 */
 .container.nav {
   display: flex;

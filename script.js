@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".container.nav nav");

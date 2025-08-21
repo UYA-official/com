@@ -9,6 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- 푸터 링크 간단 스타일 (styles.css 수정 없이 사용 가능) -->
+  <style>
+    .footer-flex { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-flex small { margin-right:auto; }
+    .footer-links a { text-decoration:none; font-size:.9rem; color:#555; }
+    .footer-links a:hover { color:#111; text-decoration:underline; }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -22,7 +30,7 @@
         <a href="#about">소개</a>
         <a href="#projects">사업</a>
         <a href="#news">소식</a>
-        <a href="#orgchart">조직도</a> <!-- 조직도 메뉴 추가 -->
+        <a href="#orgchart">조직도</a>
         <a href="#join">참여</a>
         <a href="#contact">문의</a>
       </nav>
@@ -99,7 +107,7 @@
       </div>
     </section>
 
-    <!-- 조직도 섹션 추가 -->
+    <!-- 조직도 섹션 -->
     <section id="orgchart" class="section">
       <div class="container">
         <h2>조직도</h2>
@@ -163,11 +171,21 @@
     </section>
   </main>
 
+  <!-- 푸터: 국세청(홈택스) 링크 추가 -->
   <footer class="site-footer">
-    <div class="container">
-      <small>© 2025 울산청년연합회 • 울산과 청년을 잇다</small>
+  <div class="container footer-flex">
+    <small>© 2025 울산청년연합회 • 울산과 청년을 잇다</small>
+    <div class="footer-links">
+      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
+         target="_blank" rel="noopener"
+         aria-label="국세청 홈택스 바로가기(새 창)" class="tax-link">
+        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고"
+             style="height:24px; vertical-align:middle; margin-right:6px;" />
+        국세청 홈택스
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <script src="script.js"></script>
 </body>

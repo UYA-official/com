@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".container.nav nav");
+
+  toggleBtn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+  });
+});
 document.getElementById('joinForm').addEventListener('submit', function(e){
   e.preventDefault();
   const fd = new FormData(e.target);
@@ -11,12 +19,4 @@ document.getElementById('joinForm').addEventListener('submit', function(e){
   status.textContent = '신청이 저장되었습니다 (임시 저장: 브라우저 로컬)';
   e.target.reset();
   setTimeout(()=> status.textContent = '', 4000);
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".container.nav nav");
-
-  toggleBtn.addEventListener("click", () => {
-    nav.classList.toggle("active");
-  });
 });

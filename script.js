@@ -29,33 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerOffset = document.querySelector('.site-header').offsetHeight;
         const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
-      closeMenu(); // 메뉴 닫기
+      closeMenu();
     });
   });
-
-  // 기존 회원/참여 폼 저장 코드
-  const joinForm = document.getElementById('joinForm');
-  if(joinForm){
-    joinForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      const fd = new FormData(e.target);
-      const data = Object.fromEntries(fd.entries());
-      const key = 'ulsanyouth_join_submissions';
-      const list = JSON.parse(localStorage.getItem(key) || '[]');
-      list.push({ ...data, ts: new Date().toISOString() });
-      localStorage.setItem(key, JSON.stringify(list));
-      const status = document.getElementById('formStatus');
-      if(status){
-        status.textContent = '신청이 저장되었습니다 (임시 저장: 브라우저 로컬)';
-        e.target.reset();
-        setTimeout(()=> status.textContent = '', 4000);
-      }
-    });
-  }
 });

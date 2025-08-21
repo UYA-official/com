@@ -1,27 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
-  const overlay = document.querySelector(".menu-overlay");
+  const sideMenu = document.querySelector(".side-menu");
   const closeBtn = document.querySelector(".menu-close");
-  const navLinks = overlay.querySelectorAll("a");
+  const overlay = document.querySelector(".overlay");
+  const navLinks = sideMenu.querySelectorAll("a");
 
-  // 열기 버튼
+  // 메뉴 열기
   toggleBtn.addEventListener("click", () => {
+    sideMenu.classList.add("active");
     overlay.classList.add("active");
   });
 
-  // 닫기 버튼
-  closeBtn.addEventListener("click", () => {
+  // 메뉴 닫기
+  const closeMenu = () => {
+    sideMenu.classList.remove("active");
     overlay.classList.remove("active");
-  });
+  };
+
+  closeBtn.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", closeMenu);
 
   // 메뉴 클릭하면 닫기
   navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      overlay.classList.remove("active");
-    });
+    link.addEventListener("click", closeMenu);
   });
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");

@@ -1,3 +1,42 @@
+/* nav 기본 */
+.container.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container.nav nav {
+  display: flex;
+  gap: 16px;
+}
+
+/* 햄버거 버튼 스타일 */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 모바일 전용 스타일 */
+@media (max-width: 768px) {
+  .container.nav nav {
+    display: none; /* 기본 숨김 */
+    flex-direction: column;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .container.nav nav.active {
+    display: flex; /* 버튼 클릭 시 나타남 */
+  }
+  .menu-toggle {
+    display: block; /* 햄버거 버튼 보이기 */
+  }
+}
+
+
 *{box-sizing:border-box}
 :root{
   --bg:#0b1226;
@@ -58,42 +97,4 @@ h3{font-size:20px;margin-top:0}
   .cards{grid-template-columns:1fr}
   .hero{padding:60px 0 72px}
   .hero h1{font-size:32px}
-}
-
-/* nav 기본 */
-.container.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.container.nav nav {
-  display: flex;
-  gap: 16px;
-}
-
-/* 햄버거 버튼 스타일 */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* 모바일 전용 스타일 */
-@media (max-width: 768px) {
-  .container.nav nav {
-    display: none; /* 기본 숨김 */
-    flex-direction: column;
-    width: 100%;
-    margin-top: 8px;
-  }
-  .container.nav nav.active {
-    display: flex; /* 버튼 클릭 시 나타남 */
-  }
-  .menu-toggle {
-    display: block; /* 햄버거 버튼 보이기 */
-  }
 }

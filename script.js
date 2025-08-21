@@ -1,5 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
+  const overlay = document.querySelector(".menu-overlay");
+  const closeBtn = document.querySelector(".menu-close");
+  const navLinks = overlay.querySelectorAll("a");
+
+  // 열기 버튼
+  toggleBtn.addEventListener("click", () => {
+    overlay.classList.add("active");
+  });
+
+  // 닫기 버튼
+  closeBtn.addEventListener("click", () => {
+    overlay.classList.remove("active");
+  });
+
+  // 메뉴 클릭하면 닫기
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      overlay.classList.remove("active");
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".container.nav nav");
 
   toggleBtn.addEventListener("click", () => {

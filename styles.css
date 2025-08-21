@@ -1,3 +1,82 @@
+/* 기본 햄버거 버튼 */
+.menu-toggle {
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* 기본은 숨김 */
+}
+
+/* PC에선 원래 메뉴 보이고 햄버거는 숨김 */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .container.nav nav {
+    display: none; /* 모바일에서는 원래 nav 숨김 */
+  }
+}
+
+/* 사이드 메뉴 기본 상태 (오른쪽에서 들어옴) */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px; /* 화면 밖에 숨김 */
+  width: 240px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1001;
+  transition: right 0.3s ease;
+}
+
+.side-menu.active {
+  right: 0; /* 열릴 때 화면 안으로 들어옴 */
+}
+
+/* 닫기 버튼 */
+.menu-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 메뉴 안 링크 */
+.side-menu nav a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #111;
+  font-weight: 600;
+}
+
+.side-menu nav a:hover {
+  color: #0077ff;
+}
+
+/* 어두운 배경 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* 기본 숨김 상태의 오버레이 */
 .menu-overlay {
   position: fixed;

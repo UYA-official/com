@@ -1,7 +1,7 @@
 /* 조직도 기본: PC */
 .orgchart img { 
-  max-width: 600px; 
-  width: auto;   /* <- PC는 auto */
+  max-width: 900px;   /* 기존 600px → 900px로 확대 */
+  width: auto;        /* PC는 auto */
   height: auto; 
   display: block; 
   margin: 0 auto; 
@@ -13,7 +13,7 @@
 /* 모바일 (768px 이하) */
 @media (max-width: 768px){
   .orgchart img { 
-    width: 100%;   /* 모바일에서는 꽉 차게 */
+    width: 100%;   
     max-width: 100%;
   }
 }

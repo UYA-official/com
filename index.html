@@ -7,348 +7,80 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <title>울산청년연합회</title>
   <style>
-/* ==================== 공통 스타일 ==================== */
-* { box-sizing: border-box; }
+    /* ----------------- 기본 CSS (최적화 포함) ----------------- */
+    * { box-sizing: border-box; }
+    :root {
+      --bg:#0b1226; --ink:#101828; --muted:#667085; 
+      --brand:#3b82f6; --brand2:#8b5cf6; --brand3:#ec4899; 
+      --surface:#ffffff; --surface-alt:#f8fafc; 
+      --radius:16px; --shadow:0 10px 25px rgba(2,6,23,.08);
+    }
+    html, body { margin:0; padding:0; font-family:'Noto Sans KR', system-ui, Roboto; color:var(--ink); background:#fff; scroll-behavior:smooth; }
+    .container { max-width:1100px; margin:0 auto; padding:0 20px; }
 
-:root {
-  --bg: #0b1226;
-  --ink: #101828;
-  --muted: #667085;
-  --brand: #3b82f6;
-  --brand2: #8b5cf6;
-  --brand3: #ec4899;
-  --surface: #ffffff;
-  --surface-alt: #f8fafc;
-  --radius: 16px;
-  --shadow: 0 10px 25px rgba(2,6,23,.08);
-}
+    /* ----------------- 헤더 ----------------- */
+    .site-header { position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid #eef2f7; }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); font-weight:800; }
+    .brand img { height:36px; width:auto; border-radius:8px; }
+    .main-nav { display:flex; gap:16px; }
+    .main-nav a { padding:10px 12px; border-radius:10px; text-decoration:none; color:#334155; font-weight:600; }
+    .main-nav a:hover { background:#eef2ff; color:#1e3a8a; }
+    .menu-toggle { font-size:1.8rem; background:none; border:none; cursor:pointer; display:none; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Noto Sans KR', system-ui, AppleSDGothicNeo, Segoe UI, Roboto;
-  color: var(--ink);
-  background: #fff;
-  scroll-behavior: smooth;
-}
+    /* ----------------- 히어로 ----------------- */
+    .hero { background:linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.12), rgba(236,72,153,.12)); padding:80px 0 100px; }
+    .hero h1 { font-size:40px; margin:0 0 12px; font-weight:800; letter-spacing:-0.02em; }
+    .tagline { font-size:18px; color:var(--muted); max-width:720px; }
+    .cta { margin-top:24px; display:flex; gap:12px; }
+    .btn { display:inline-block; padding:12px 18px; border-radius:14px; text-decoration:none; border:1px solid #e5e7eb; font-weight:700; }
+    .btn.primary { background:linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); color:#fff; border:none; box-shadow:var(--shadow); }
+    .btn.ghost { background:#fff; }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+    /* ----------------- 섹션 ----------------- */
+    .section { padding:72px 0; }
+    .section.alt { background:var(--surface-alt); }
+    h2 { font-size:28px; margin:0 0 20px; font-weight:800; }
+    h3 { font-size:20px; margin-top:0; }
+    .grid-2 { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:#fff; border:1px solid #eef2f7; border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); }
+    .kv { margin-top:12px; display:grid; gap:8px; }
+    .kv div { display:flex; justify-content:space-between; background:#f8fafc; padding:10px; border-radius:12px; }
+    .kv-k { font-weight:700; color:#475569; }
+    .kv-v { color:#0f172a; }
+    .checks { padding-left:18px; }
+    .checks li { margin:6px 0; }
+    .news { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .news .date { font-size:12px; color:var(--muted); margin-right:10px; }
+    .muted { color:var(--muted); }
 
-/* ==================== 헤더 ==================== */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-  border-bottom: 1px solid #eef2f7;
-}
+    /* ----------------- 푸터 ----------------- */
+    .footer-flex { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-flex small { margin-right:auto; }
+    .footer-links a { text-decoration:none; font-size:.9rem; color:#555; }
+    .footer-links a:hover { color:#111; text-decoration:underline; }
+    .site-footer { border-top:1px solid #eef2f7; padding:24px 0; background:#fff; }
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 68px;
-}
+    /* ----------------- 햄버거 / 사이드 메뉴 ----------------- */
+    .side-menu { position:fixed; top:0; right:-260px; width:240px; height:100vh; background:#fff; box-shadow:-2px 0 10px rgba(0,0,0,0.2); padding:60px 20px; display:flex; flex-direction:column; gap:20px; z-index:1001; transition:right 0.3s ease; }
+    .side-menu.active { right:0; }
+    .menu-close { position:absolute; top:20px; right:20px; font-size:2rem; background:none; border:none; cursor:pointer; }
+    .side-menu nav a { font-size:1.2rem; text-decoration:none; color:#111; font-weight:600; }
+    .side-menu nav a:hover { color:#0077ff; }
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    .overlay.active { opacity:1; pointer-events:auto; }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
-  font-weight: 800;
-}
-
-.brand img {
-  height: 36px;
-  width: auto;
-  border-radius: 8px;
-}
-
-.main-nav {
-  display: flex;
-  gap: 16px;
-}
-
-.main-nav a {
-  padding: 10px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #334155;
-  font-weight: 600;
-}
-
-.main-nav a:hover {
-  background: #eef2ff;
-  color: #1e3a8a;
-}
-
-/* ==================== 히어로 ==================== */
-.hero {
-  background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.12), rgba(236,72,153,.12));
-  padding: 80px 0 100px;
-}
-
-.hero h1 {
-  font-size: 40px;
-  margin: 0 0 12px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.tagline {
-  font-size: 18px;
-  color: var(--muted);
-  max-width: 720px;
-}
-
-.cta {
-  margin-top: 24px;
-  display: flex;
-  gap: 12px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 18px;
-  border-radius: 14px;
-  text-decoration: none;
-  border: 1px solid #e5e7eb;
-  font-weight: 700;
-}
-
-.btn.primary {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
-  color: #fff;
-  border: none;
-  box-shadow: var(--shadow);
-}
-
-.btn.ghost {
-  background: #fff;
-}
-
-/* ==================== 섹션 ==================== */
-.section {
-  padding: 72px 0;
-}
-
-.section.alt {
-  background: var(--surface-alt);
-}
-
-h2 {
-  font-size: 28px;
-  margin: 0 0 20px;
-  font-weight: 800;
-}
-
-h3 {
-  font-size: 20px;
-  margin-top: 0;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 24px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 16px;
-}
-
-.card {
-  background: #fff;
-  border: 1px solid #eef2f7;
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-}
-
-.kv {
-  margin-top: 12px;
-  display: grid;
-  gap: 8px;
-}
-
-.kv div {
-  display: flex;
-  justify-content: space-between;
-  background: #f8fafc;
-  padding: 10px;
-  border-radius: 12px;
-}
-
-.kv-k { font-weight: 700; color: #475569; }
-.kv-v { color: #0f172a; }
-
-.checks { padding-left: 18px; }
-.checks li { margin: 6px 0; }
-
-.news {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.news .date {
-  font-size: 12px;
-  color: var(--muted);
-  margin-right: 10px;
-}
-
-.form { max-width: 680px; }
-
-.form-row {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 12px;
-}
-
-.form-row label {
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.form-row input,
-.form-row select,
-.form-row textarea {
-  padding: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  outline: none;
-}
-
-.form-row input:focus,
-.form-row select:focus,
-.form-row textarea:focus {
-  border-color: #93c5fd;
-  box-shadow: 0 0 0 4px rgba(59,130,246,.1);
-}
-
-.form-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.muted { color: var(--muted); }
-
-/* ==================== 푸터 ==================== */
-.footer-flex {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.footer-flex small { margin-right: auto; }
-
-.footer-links a {
-  text-decoration: none;
-  font-size: .9rem;
-  color: #555;
-}
-
-.footer-links a:hover {
-  color: #111;
-  text-decoration: underline;
-}
-
-.site-footer {
-  border-top: 1px solid #eef2f7;
-  padding: 24px 0;
-  background: #fff;
-}
-
-/* ==================== 햄버거 / 사이드 메뉴 ==================== */
-.menu-toggle {
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: none; /* PC 기본 숨김 */
-}
-
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 70%;
-  max-width: 260px;
-  height: 100vh;
-  background: #fff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1001;
-  transition: right 0.3s ease;
-}
-
-.side-menu.active { right: 0; }
-
-.menu-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.side-menu nav a {
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: #111;
-  font-weight: 600;
-}
-
-.side-menu nav a:hover { color: #0077ff; }
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ==================== 반응형 ==================== */
-@media (max-width: 900px) {
-  .grid-2 { grid-template-columns: 1fr; }
-  .cards { grid-template-columns: 1fr; }
-  .hero { padding: 60px 0 72px; }
-  .hero h1 { font-size: 32px; }
-}
-
-@media (max-width: 768px) {
-  .main-nav { display: none; }
-  .menu-toggle { display: block; }
-}
+    /* ----------------- 반응형 ----------------- */
+    @media (max-width:900px){ .grid-2{grid-template-columns:1fr;} .cards{grid-template-columns:1fr;} .hero{padding:60px 0 72px;} .hero h1{font-size:32px;} }
+    @media (max-width:768px){ .menu-toggle{display:block;} .main-nav{display:none;} }
   </style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="#home">
@@ -388,7 +120,7 @@ h3 {
 <div class="overlay"></div>
 
 <main>
-  <!-- 기존 HTML 섹션 그대로 -->
+  <!-- 히어로 -->
   <section id="home" class="hero">
     <div class="container">
       <h1>울산 청년의 중심, 하나의 연합</h1>
@@ -400,18 +132,104 @@ h3 {
     </div>
   </section>
 
-  <!-- about, projects, news, orgchart, join, contact 섹션 동일하게 유지 -->
-  <!-- ... (생략 가능, 위 HTML 그대로 사용) -->
+  <!-- 소개 -->
+  <section id="about" class="section">
+    <div class="container grid-2">
+      <div>
+        <h2>연합회 소개</h2>
+        <p>울산청년연합회는 청년과 기업, 그리고 정책을 연결하여 지속 가능한 지역 생태계를 만듭니다. 창업, 문화, 네트워킹, 투자 유치 등 다양한 프로그램을 통해 청년의 성장을 지원합니다.</p>
+        <ul class="checks">
+          <li>청년 친화 네트워크 구축</li>
+          <li>기업·기관 협력 프로젝트</li>
+          <li>정책 제안 및 의견 수렴</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>비전 & 미션</h3>
+        <p>청년의 도전이 울산의 내일이 되도록 연결과 실행으로 돕습니다.</p>
+        <div class="kv">
+          <div><span class="kv-k">비전</span><span class="kv-v">연결을 통한 성장</span></div>
+          <div><span class="kv-k">미션</span><span class="kv-v">청년·기업·정책의 허브</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 사업 -->
+  <section id="projects" class="section alt">
+    <div class="container">
+      <h2>주요 사업</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>청년 창업 지원</h3>
+          <p>멘토링, 사업계획 코칭, 투자 연계로 아이디어를 사업으로 성장시킵니다.</p>
+        </div>
+        <div class="card">
+          <h3>기업·청년 네트워킹</h3>
+          <p>매칭 행사 및 정기 포럼으로 현장 수요와 청년 인재를 연결합니다.</p>
+        </div>
+        <div class="card">
+          <h3>홍보·콘텐츠 제작</h3>
+          <p>지역 기업/행사 홍보 영상 제작과 캠페인 운영을 지원합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 공지 & 소식 -->
+  <section id="news" class="section">
+    <div class="container">
+      <h2>공지 & 소식</h2>
+      <ul class="news">
+        <li><span class="date">2025-03-29</span><a href="#" onclick="return false;">울산청년연합회 홈페이지 오픈</a></li>
+        <li><span class="date">2025-08-18</span><a href="#" onclick="return false;">크루페스티벌 청년 참여 부스 모집 공고</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 조직도 -->
+  <section id="orgchart" class="section">
+    <div class="container">
+      <h2>조직도</h2>
+      <p class="muted">울산청년연합회의 조직 구조를 한눈에 확인하세요.</p>
+      <div class="orgchart">
+        <img src="assets/조직도@4x.png" alt="울산청년연합회 조직도" style="max-width:100%; height:auto; border:1px solid #eee; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 참여 신청 -->
+  <section id="join" class="section alt">
+    <div class="container">
+      <h2>회원/참여 신청</h2>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0cgi5e-z77L2VOowcFQD_-2r0jnnjgXey79Pr8gi1HqmblQ/viewform?embedded=true" width="100%" height="1066" frameborder="0" marginheight="0" marginwidth="0" style="border:0; border-radius:12px;">로드 중…</iframe>
+    </div>
+  </section>
+
+  <!-- 문의 -->
+  <section id="contact" class="section">
+    <div class="container grid-2">
+      <div>
+        <h2>문의하기</h2>
+        <p class="muted">이메일: uya250329@naver.com<br/>전화: 070-4130-8261</p>
+        <p>연합회 위치: 울산광역시 남구 중앙로 187 3층 울산청년연합회</p>
+      </div>
+      <div class="card">
+        <h3>후원/협력</h3>
+        <p>기업·기관의 후원과 협력을 기다립니다. 함께 지역의 미래를 만듭시다.</p>
+        <a class="btn ghost" href="#join">협력 제안하기</a>
+      </div>
+    </div>
+  </section>
 </main>
 
+<!-- 푸터 -->
 <footer class="site-footer">
   <div class="container footer-flex">
     <small>© 2025 울산청년연합회 • 울산 청년의 중심, 하나의 연합</small>
     <div class="footer-links">
-      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
-        target="_blank" rel="noopener" aria-label="국세청 홈택스 바로가기(새 창)">
-        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고"
-            style="height:24px; vertical-align:middle; margin-right:6px;" />
+      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml" target="_blank" rel="noopener" aria-label="국세청 홈택스 바로가기(새 창)">
+        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고" style="height:24px; vertical-align:middle; margin-right:6px;" />
         국세청 홈택스
       </a>
     </div>
@@ -450,10 +268,7 @@ sideMenuLinks.forEach(link => {
       const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
     setTimeout(closeMenu, 300);
   });

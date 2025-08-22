@@ -1,4 +1,3 @@
-// script.js
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
 const menuClose = document.querySelector('.menu-close');
@@ -25,14 +24,12 @@ sideMenuLinks.forEach(link => {
     e.preventDefault();
     const targetId = link.getAttribute('href');
     const targetEl = document.querySelector(targetId);
-    if (targetEl) {
+    if(targetEl) {
       const headerOffset = document.querySelector('.site-header').offsetHeight;
       const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
     setTimeout(closeMenu, 300);
   });

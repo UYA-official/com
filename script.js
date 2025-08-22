@@ -37,3 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+sideMenuLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetEl = document.querySelector(targetId);
+    if(targetEl){
+      closeMenu(); // 메뉴 닫기
+      setTimeout(() => {
+        const headerOffset = document.querySelector('.site-header').offsetHeight;
+        const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }, 300); // 애니메이션 시간과 맞춤
+    }
+  });
+});

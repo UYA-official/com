@@ -10,32 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.classList.remove('active');
   }
 
-  // 메뉴 열기
   menuToggle.addEventListener('click', () => {
     sideMenu.classList.add('active');
     overlay.classList.add('active');
   });
 
-  // 메뉴 닫기
   menuClose.addEventListener('click', closeMenu);
   overlay.addEventListener('click', closeMenu);
 
-  // 사이드 메뉴 링크 클릭: 메뉴 닫고 스크롤 이동
+  // 사이드 메뉴 링크 클릭 시 부드럽게 스크롤 + 메뉴 닫기
   sideMenuLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault(); // 기본 이동 막기
-      const targetId = link.getAttribute('href'); 
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
       const targetEl = document.querySelector(targetId);
-
       if(targetEl){
-        const headerOffset = document.querySelector('.site-header').offsetHeight;
-        const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - headerOffset;
+        const headerHeight = document.querySelector('.site-header').offsetHeight;
+        const topPos = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight;
 
-        closeMenu(); // 메뉴 먼저 닫기
+        // 메뉴 닫고 350ms 후 스크롤 (애니메이션과 동기화)
+        closeMenu();
         setTimeout(() => {
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }, 300); // 메뉴 닫힘 애니메이션 끝난 뒤 스크롤
+          window.scrollTo({ top: topPos, behavior:'smooth' });
+        }, 350);
       }
     });
   });

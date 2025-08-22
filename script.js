@@ -1,22 +1,3 @@
-sideMenuLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    const targetId = link.getAttribute('href'); // #home, #about 등
-    const targetEl = document.querySelector(targetId);
-    if(targetEl){
-      e.preventDefault(); // 스크롤 처리 전 기본 이동 막기
-      const headerOffset = document.querySelector('.site-header').offsetHeight;
-      const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
-    closeMenu(); // 메뉴 닫기
-  });
-});
-
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
 const menuClose = document.querySelector('.menu-close');
@@ -40,16 +21,19 @@ overlay.addEventListener('click', closeMenu);
 // 사이드 메뉴 링크 클릭: 부드럽게 스크롤 + 메뉴 닫기
 sideMenuLinks.forEach(link => {
   link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = link.getAttribute('href');
+    const targetId = link.getAttribute('href'); // #home, #about 등
     const targetEl = document.querySelector(targetId);
-    if(targetEl) {
+    if(targetEl){
+      e.preventDefault(); // 기본 이동 막기
       const headerOffset = document.querySelector('.site-header').offsetHeight;
       const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - headerOffset;
 
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
-    setTimeout(closeMenu, 300);
+    closeMenu(); // 메뉴 닫기
   });
 });

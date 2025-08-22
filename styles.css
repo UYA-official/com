@@ -1,3 +1,23 @@
+/* 조직도 기본: PC */
+.orgchart img { 
+  max-width: 600px; 
+  width: auto;   /* <- PC는 auto */
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+  border:1px solid #eee; 
+  border-radius:12px; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.1); 
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 768px){
+  .orgchart img { 
+    width: 100%;   /* 모바일에서는 꽉 차게 */
+    max-width: 100%;
+  }
+}
+
 /* ----------------- 기본 스타일 ----------------- */
 * { box-sizing: border-box; }
 :root {

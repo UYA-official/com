@@ -1,3 +1,22 @@
+sideMenuLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const targetId = link.getAttribute('href'); // #home, #about 등
+    const targetEl = document.querySelector(targetId);
+    if(targetEl){
+      e.preventDefault(); // 스크롤 처리 전 기본 이동 막기
+      const headerOffset = document.querySelector('.site-header').offsetHeight;
+      const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    closeMenu(); // 메뉴 닫기
+  });
+});
+
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
 const menuClose = document.querySelector('.menu-close');

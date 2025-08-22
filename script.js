@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuClose = document.querySelector('.menu-close');
   const overlay = document.querySelector('.overlay');
   const sideMenuLinks = sideMenu.querySelectorAll('nav a');
-  const header = document.querySelector('.site-header'); // ✨가장 첫 부분에 선언하는 것이 중요합니다.
+  const header = document.querySelector('.site-header');
 
   /**
    * 사이드 메뉴를 닫는 함수
@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetId = link.getAttribute('href');
       const targetEl = document.querySelector(targetId);
 
-      if (targetEl && header) { // ✨header가 존재하는지 확인하는 조건 추가
+      // 타겟 요소와 헤더가 모두 존재하는 경우에만 스크롤 로직 실행
+      if (targetEl && header) {
         // 헤더의 높이를 고려한 스크롤 위치 계산
         const headerOffset = header.offsetHeight;
         const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;

@@ -1,3 +1,53 @@
+/* 기본: PC 화면 (768px 이상) */
+.main-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-toggle {
+  display: none; /* PC에서는 햄버거 숨김 */
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none; /* 모바일에서는 메인 메뉴 숨기기 */
+  }
+
+  .menu-toggle {
+    display: block; /* 모바일에서는 햄버거 보이기 */
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    padding: 2rem;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  .side-menu.active {
+    right: 0;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+  }
+
+  .overlay.active {
+    display: block;
+  }
+}
+
 /* ----------------- 공통 스타일 ----------------- */
 * { box-sizing: border-box; }
 :root {

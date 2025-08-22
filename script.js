@@ -38,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 타겟 요소와 헤더가 모두 존재하는 경우에만 스크롤 로직 실행
       if (targetEl && header) {
+        // 헤더의 높이를 고려한 스크롤 위치 계산
         const headerOffset = header.offsetHeight;
         const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
 
+        // 메뉴를 닫은 후 스크롤 이동
         closeMenu(() => {
           window.scrollTo({
             top: offsetPosition,

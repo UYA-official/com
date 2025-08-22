@@ -9,10 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
   <title>울산청년연합회</title>
   <style>
+    /* 기본 스타일 */
     * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; font-family:'Noto Sans KR', system-ui, AppleSDGothicNeo, Segoe UI, Roboto; color:#101828; background:#fff; scroll-behavior:smooth; }
+    .container { max-width:1100px; margin:0 auto; padding:0 20px; }
+
     :root {
-      --bg:#0b1226;
-      --ink:#101828;
       --muted:#667085;
       --brand:#3b82f6;
       --brand2:#8b5cf6;
@@ -22,86 +24,113 @@
       --radius:16px;
       --shadow:0 10px 25px rgba(2,6,23,.08);
     }
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Noto Sans KR', system-ui, AppleSDGothicNeo, Segoe UI, Roboto;
-      color: var(--ink);
-      background: #fff;
-      scroll-behavior: smooth;
+
+    /* 헤더 */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background:#fff;
+      border-bottom:1px solid #eef2f7;
     }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:#101828; font-weight:800; }
+    .brand img { height:36px; width:auto; border-radius:8px; }
 
-    .site-header { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #eef2f7; }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 800; }
-    .brand img { height: 36px; width: auto; border-radius: 8px; }
-    .main-nav { display: flex; gap: 16px; }
-    .main-nav a { padding: 10px 12px; border-radius: 10px; text-decoration: none; color: #334155; font-weight: 600; }
-    .main-nav a:hover { background: #eef2ff; color: #1e3a8a; }
+    .main-nav { display:flex; gap:16px; }
+    .main-nav a { padding:10px 12px; border-radius:10px; text-decoration:none; color:#334155; font-weight:600; }
+    .main-nav a:hover { background:#eef2ff; color:#1e3a8a; }
 
-    .menu-toggle { font-size: 1.8rem; background: none; border: none; cursor: pointer; display: none; }
+    /* 햄버거 버튼 */
+    .menu-toggle { display:none; font-size:1.8rem; background:none; border:none; cursor:pointer; }
 
-    .side-menu { position: fixed; top:0; right:-260px; width:240px; height:100vh; background:#fff; box-shadow:-2px 0 10px rgba(0,0,0,0.2); padding:60px 20px; display:flex; flex-direction:column; gap:20px; z-index:1001; transition:right 0.3s ease; }
+    /* 사이드 메뉴 */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 240px;
+      height: 100vh;
+      background:#fff;
+      box-shadow:-2px 0 10px rgba(0,0,0,0.2);
+      padding:80px 20px 20px;
+      display:flex;
+      flex-direction: column;
+      gap:20px;
+      z-index:1001;
+      transition:right 0.3s ease;
+    }
     .side-menu.active { right:0; }
     .menu-close { position:absolute; top:20px; right:20px; font-size:2rem; background:none; border:none; cursor:pointer; }
-    .side-menu nav a { font-size:1.2rem; text-decoration:none; color:#111; font-weight:600; }
+    .side-menu nav { display:flex; flex-direction:column; gap:16px; }
+    .side-menu nav a { font-size:1.2rem; font-weight:600; text-decoration:none; color:#111; }
     .side-menu nav a:hover { color:#0077ff; }
 
-    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    /* 오버레이 */
+    .overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1000;
+      opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+    }
     .overlay.active { opacity:1; pointer-events:auto; }
 
-    .hero { background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.12), rgba(236,72,153,.12)); padding: 80px 0 100px; }
-    .hero h1 { font-size: 40px; margin: 0 0 12px; font-weight: 800; letter-spacing: -0.02em; }
-    .tagline { font-size: 18px; color: var(--muted); max-width: 720px; }
-    .cta { margin-top: 24px; display: flex; gap: 12px; }
-    .btn { display: inline-block; padding: 12px 18px; border-radius: 14px; text-decoration: none; border: 1px solid #e5e7eb; font-weight: 700; }
-    .btn.primary { background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); color: #fff; border: none; box-shadow: var(--shadow); }
-    .btn.ghost { background: #fff; }
+    /* 히어로 */
+    .hero { background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.12), rgba(236,72,153,.12)); padding:80px 0 100px; text-align:center; }
+    .hero h1 { font-size:40px; margin:0 0 12px; font-weight:800; letter-spacing:-0.02em; }
+    .tagline { font-size:18px; color:var(--muted); max-width:720px; margin:0 auto; }
+    .cta { margin-top:24px; display:flex; justify-content:center; gap:12px; }
+    .btn { display:inline-block; padding:12px 18px; border-radius:14px; text-decoration:none; border:1px solid #e5e7eb; font-weight:700; }
+    .btn.primary { background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); color:#fff; border:none; box-shadow:var(--shadow); }
+    .btn.ghost { background:#fff; }
 
-    .section { padding: 72px 0; }
-    .section.alt { background: var(--surface-alt); }
-    h2 { font-size: 28px; margin: 0 0 20px; font-weight: 800; }
-    h3 { font-size: 20px; margin-top: 0; }
-    .grid-2 { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
-    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-    .card { background: #fff; border: 1px solid #eef2f7; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
-    .kv { margin-top: 12px; display: grid; gap: 8px; }
-    .kv div { display: flex; justify-content: space-between; background: #f8fafc; padding: 10px; border-radius: 12px; }
-    .kv-k { font-weight: 700; color: #475569; }
-    .kv-v { color: #0f172a; }
-    .checks { padding-left: 18px; }
-    .checks li { margin: 6px 0; }
-    .news { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-    .news .date { font-size: 12px; color: var(--muted); margin-right: 10px; }
-    .muted { color: var(--muted); }
+    /* 섹션 */
+    .section { padding:72px 0; }
+    .section.alt { background:var(--surface-alt); }
+    h2 { font-size:28px; margin:0 0 20px; font-weight:800; text-align:center; }
+    h3 { font-size:20px; margin-top:0; }
+    .grid-2 { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:#fff; border:1px solid #eef2f7; border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); }
+    .kv { margin-top:12px; display:grid; gap:8px; }
+    .kv div { display:flex; justify-content:space-between; background:#f8fafc; padding:10px; border-radius:12px; }
+    .kv-k { font-weight:700; color:#475569; }
+    .kv-v { color:#0f172a; }
+    .checks { padding-left:18px; }
+    .checks li { margin:6px 0; }
+    .news { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .news .date { font-size:12px; color:var(--muted); margin-right:10px; }
+    .muted { color:var(--muted); }
 
     /* 조직도 */
-    .orgchart img { max-width: 600px; width: 100%; height: auto; display: block; margin: 0 auto; border:1px solid #eee; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .orgchart img {
+      max-width:1200px; width:auto; height:auto; display:block; margin:0 auto;
+      border:1px solid #eee; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
 
-    /* 푸터 홈택스 로고 */
+    /* 푸터 */
     .footer-flex { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
     .footer-flex small { margin-right:auto; }
     .footer-links a { text-decoration:none; font-size:.9rem; color:#555; display:flex; align-items:center; gap:6px; }
     .footer-links a img { height:24px; width:auto; }
     .footer-links a:hover { color:#111; text-decoration:underline; }
-    .site-footer { border-top: 1px solid #eef2f7; padding: 24px 0; background: #fff; }
+    .site-footer { border-top:1px solid #eef2f7; padding:24px 0; background:#fff; }
 
-    @media (max-width: 900px){
-      .grid-2 { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      .hero { padding: 60px 0 72px; }
-      .hero h1 { font-size: 32px; }
+    /* 반응형 */
+    @media(max-width:900px){
+      .grid-2 { grid-template-columns:1fr; }
+      .cards { grid-template-columns:1fr; }
+      .hero { padding:60px 0 72px; }
+      .hero h1 { font-size:32px; }
     }
-    @media (max-width: 768px){
+    @media(max-width:768px){
       .menu-toggle { display:block; }
       .main-nav { display:none; }
-      .orgchart img { max-width: 100%; }
+      .orgchart img { width:100%; max-width:100%; }
       .footer-links a img { height:20px; }
     }
   </style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="#home">
@@ -134,7 +163,7 @@
 </header>
 
 <div class="overlay"></div>
-  
+
 <main>
   <section id="home" class="hero">
     <div class="container">
@@ -193,14 +222,8 @@
     <div class="container">
       <h2>공지 & 소식</h2>
       <ul class="news">
-        <li>
-          <span class="date">2025-03-29</span>
-          <a href="#" onclick="return false;">울산청년연합회 홈페이지 오픈</a>
-        </li>
-        <li>
-          <span class="date">2025-08-18</span>
-          <a href="#" onclick="return false;">크루페스티벌 청년 참여 부스 모집 공고</a>
-        </li>
+        <li><span class="date">2025-03-29</span><a href="#" onclick="return false;">울산청년연합회 홈페이지 오픈</a></li>
+        <li><span class="date">2025-08-18</span><a href="#" onclick="return false;">크루페스티벌 청년 참여 부스 모집 공고</a></li>
       </ul>
     </div>
   </section>
@@ -218,11 +241,9 @@
   <section id="join" class="section alt">
     <div class="container">
       <h2>회원/참여 신청</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0cgi5e-z77L2VOowcFQD_-2r0jnnjgXey79Pr8gi1HqmblQ/viewform?embedded=true" 
-              width="100%" height="1066" frameborder="0" marginheight="0" marginwidth="0" 
-              style="border:0; border-radius:12px;">
-        로드 중…
-      </iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0cgi5e-z77L2VOowcFQD_-2r0jnnjgXey79Pr8gi1HqmblQ/viewform?embedded=true"
+              width="100%" height="1066" frameborder="0" marginheight="0" marginwidth="0"
+              style="border:0; border-radius:12px;">로드 중…</iframe>
     </div>
   </section>
 
@@ -261,8 +282,15 @@ const menuClose = document.querySelector('.menu-close');
 const overlay = document.querySelector('.overlay');
 const sideMenuLinks = sideMenu.querySelectorAll('nav a');
 
-menuToggle.addEventListener('click', () => { sideMenu.classList.add('active'); overlay.classList.add('active'); });
-function closeMenu() { sideMenu.classList.remove('active'); overlay.classList.remove('active'); }
+menuToggle.addEventListener('click', () => {
+  sideMenu.classList.add('active');
+  overlay.classList.add('active');
+});
+
+function closeMenu() {
+  sideMenu.classList.remove('active');
+  overlay.classList.remove('active');
+}
 menuClose.addEventListener('click', closeMenu);
 overlay.addEventListener('click', closeMenu);
 
@@ -271,15 +299,16 @@ sideMenuLinks.forEach(link => {
     e.preventDefault();
     const targetId = link.getAttribute('href');
     const targetEl = document.querySelector(targetId);
-    if(targetEl) {
+    if(targetEl){
       const headerOffset = document.querySelector('.site-header').offsetHeight;
       const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - headerOffset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
-    setTimeout(closeMenu, 300);
+    closeMenu();
   });
 });
 </script>
+
 </body>
 </html>

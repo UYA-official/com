@@ -7,19 +7,99 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
   <title>울산청년연합회</title>
+  <style>
+    /* 기본 스타일 */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Noto Sans KR', sans-serif; scroll-behavior: smooth; color:#101828; background:#fff; }
+    a { text-decoration:none; color:inherit; }
+    .container { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* 헤더 */
+    .site-header { position: sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid #eef2f7; }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; }
+    .brand img { height:36px; width:auto; border-radius:8px; }
+
+    /* PC 메인 메뉴 */
+    .main-nav { display:flex; gap:16px; }
+    .main-nav a { padding:10px 12px; border-radius:10px; font-weight:600; color:#334155; }
+    .main-nav a:hover { background:#eef2ff; color:#1e3a8a; }
+
+    /* 햄버거 */
+    .menu-toggle { font-size:1.8rem; background:none; border:none; cursor:pointer; display:none; }
+
+    /* 사이드 메뉴 */
+    .side-menu {
+      position: fixed; top:0; right:-260px; width:240px; height:100vh;
+      background:#fff; box-shadow:-2px 0 10px rgba(0,0,0,0.2);
+      padding:60px 20px; display:flex; flex-direction:column; gap:20px;
+      z-index:1001; transition:right 0.3s ease;
+    }
+    .side-menu.active { right:0; }
+    .menu-close { position:absolute; top:20px; right:20px; font-size:2rem; background:none; border:none; cursor:pointer; }
+    .side-menu nav a { font-size:1.2rem; font-weight:600; }
+    .side-menu nav a:hover { color:#0077ff; }
+
+    /* 오버레이 */
+    .overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1000;
+      opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+    }
+    .overlay.active { opacity:1; pointer-events:auto; }
+
+    /* 히어로 */
+    .hero { background:linear-gradient(135deg, rgba(59,130,246,.12), rgba(139,92,246,.12), rgba(236,72,153,.12)); padding:80px 0 100px; text-align:center; }
+    .hero h1 { font-size:40px; font-weight:800; margin-bottom:12px; }
+    .tagline { font-size:18px; color:#667085; max-width:720px; margin:0 auto; }
+    .cta { margin-top:24px; display:flex; gap:12px; justify-content:center; }
+    .btn { display:inline-block; padding:12px 18px; border-radius:14px; font-weight:700; text-align:center; }
+    .btn.primary { background:linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); color:#fff; border:none; }
+    .btn.ghost { background:#fff; border:1px solid #e5e7eb; }
+
+    /* 섹션 */
+    .section { padding:72px 0; }
+    .section.alt { background:#f8fafc; }
+    h2 { font-size:28px; font-weight:800; margin-bottom:20px; }
+    h3 { font-size:20px; margin-top:0; }
+
+    .grid-2 { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:#fff; border:1px solid #eef2f7; border-radius:16px; padding:20px; box-shadow:0 10px 25px rgba(2,6,23,.08); }
+    .kv { margin-top:12px; display:grid; gap:8px; }
+    .kv div { display:flex; justify-content:space-between; background:#f8fafc; padding:10px; border-radius:12px; }
+    .kv-k { font-weight:700; color:#475569; }
+    .kv-v { color:#0f172a; }
+    .checks { padding-left:18px; list-style:disc; margin-top:8px; }
+    .news { list-style:none; display:grid; gap:10px; }
+    .news .date { font-size:12px; color:#667085; margin-right:10px; }
+    .muted { color:#667085; }
+
+    /* 조직도 */
+    .orgchart img { max-width:800px; width:100%; height:auto; display:block; margin:0 auto; border:1px solid #eee; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+
+    /* 푸터 */
+    .footer-flex { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-flex small { margin-right:auto; }
+    .footer-links a { display:flex; align-items:center; gap:6px; font-size:.9rem; color:#555; }
+    .footer-links a img { height:24px; width:auto; }
+    .footer-links a:hover { color:#111; text-decoration:underline; }
+    .site-footer { border-top:1px solid #eef2f7; padding:24px 0; background:#fff; }
+
+    /* 반응형 */
+    @media (max-width:900px) { .grid-2 { grid-template-columns:1fr; } .cards { grid-template-columns:1fr; } .hero { padding:60px 0 72px; } .hero h1 { font-size:32px; } }
+    @media (max-width:768px){
+      .menu-toggle { display:block; }
+      .main-nav { display:none; }
+      .orgchart img { max-width:100%; }
+      .footer-links a img { height:20px; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- 헤더 -->
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="#home">
-      <img src="assets/logo.jpg" alt="울산청년연합회 로고" />
-    </a>
-
-    <!-- PC 메뉴 -->
+    <a class="brand" href="#home"><img src="assets/logo.jpg" alt="울산청년연합회 로고" /></a>
     <nav class="main-nav">
       <a href="#home">홈</a>
       <a href="#about">소개</a>
@@ -29,12 +109,9 @@
       <a href="#join">참여</a>
       <a href="#contact">문의</a>
     </nav>
-
-    <!-- 모바일 햄버거 -->
     <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
   </div>
 
-  <!-- 사이드 메뉴 -->
   <div class="side-menu">
     <button class="menu-close" aria-label="메뉴 닫기">×</button>
     <nav>
@@ -49,11 +126,9 @@
   </div>
 </header>
 
-<!-- 오버레이 -->
 <div class="overlay"></div>
 
 <main>
-  <!-- 홈 -->
   <section id="home" class="hero">
     <div class="container">
       <h1>울산 청년의 중심, 하나의 연합</h1>
@@ -65,12 +140,11 @@
     </div>
   </section>
 
-  <!-- 소개 -->
   <section id="about" class="section">
     <div class="container grid-2">
       <div>
         <h2>연합회 소개</h2>
-        <p>울산청년연합회는 청년과 기업, 그리고 정책을 연결하여 지속 가능한 지역 생태계를 만듭니다. 창업, 문화, 네트워킹, 투자 유치 등 다양한 프로그램을 통해 청년의 성장을 지원합니다.</p>
+        <p>울산청년연합회는 청년과 기업, 그리고 정책을 연결하여 지속 가능한 지역 생태계를 만듭니다.</p>
         <ul class="checks">
           <li>청년 친화 네트워크 구축</li>
           <li>기업·기관 협력 프로젝트</li>
@@ -88,7 +162,6 @@
     </div>
   </section>
 
-  <!-- 사업 -->
   <section id="projects" class="section alt">
     <div class="container">
       <h2>주요 사업</h2>
@@ -109,51 +182,39 @@
     </div>
   </section>
 
-  <!-- 소식 -->
   <section id="news" class="section">
     <div class="container">
       <h2>공지 & 소식</h2>
       <ul class="news">
-        <li>
-          <span class="date">2025-03-29</span>
-          <a href="#" onclick="return false;">울산청년연합회 홈페이지 오픈</a>
-        </li>
-        <li>
-          <span class="date">2025-08-18</span>
-          <a href="#" onclick="return false;">크루페스티벌 청년 참여 부스 모집 공고</a>
-        </li>
+        <li><span class="date">2025-03-29</span> <a href="#">울산청년연합회 홈페이지 오픈</a></li>
+        <li><span class="date">2025-08-18</span> <a href="#">크루페스티벌 청년 참여 부스 모집 공고</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- 조직도 -->
   <section id="orgchart" class="section">
     <div class="container">
       <h2>조직도</h2>
       <p class="muted">울산청년연합회의 조직 구조를 한눈에 확인하세요.</p>
       <div class="orgchart">
-        <img src="assets/조직도@4x.png" alt="울산청년연합회 조직도" />
+        <img src="assets/조직도@4x.png" alt="울산청년연합회 조직도">
       </div>
     </div>
   </section>
 
-  <!-- 회원/참여 신청 -->
   <section id="join" class="section alt">
     <div class="container">
       <h2>회원/참여 신청</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0cgi5e-z77L2VOowcFQD_-2r0jnnjgXey79Pr8gi1HqmblQ/viewform?embedded=true"
-              width="100%" height="1066" frameborder="0" style="border:0; border-radius:12px;">
-        로드 중…
-      </iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0cgi5e-z77L2VOowcFQD_-2r0jnnjgXey79Pr8gi1HqmblQ/viewform?embedded=true" 
+        width="100%" height="1066" frameborder="0" style="border-radius:12px;">로드 중…</iframe>
     </div>
   </section>
 
-  <!-- 문의 -->
   <section id="contact" class="section">
     <div class="container grid-2">
       <div>
         <h2>문의하기</h2>
-        <p class="muted">이메일: uya250329@naver.com<br/>전화: 070-4130-8261</p>
+        <p class="muted">이메일: uya250329@naver.com<br>전화: 070-4130-8261</p>
         <p>연합회 위치: 울산광역시 남구 중앙로 187 3층 울산청년연합회</p>
       </div>
       <div class="card">
@@ -165,20 +226,54 @@
   </section>
 </main>
 
-<!-- 푸터 -->
 <footer class="site-footer">
   <div class="container footer-flex">
     <small>© 2025 울산청년연합회 • 울산 청년의 중심, 하나의 연합</small>
     <div class="footer-links">
-      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml"
-         target="_blank" rel="noopener" aria-label="국세청 홈택스 바로가기(새 창)">
-        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고" />
-        국세청 홈택스
+      <a href="https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml" target="_blank" rel="noopener">
+        <img src="assets/hometax_logo.png" alt="국세청 홈택스 로고">국세청 홈택스
       </a>
     </div>
   </div>
 </footer>
 
-<script src="scripts.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sideMenu = document.querySelector('.side-menu');
+  const menuClose = document.querySelector('.menu-close');
+  const overlay = document.querySelector('.overlay');
+  const sideMenuLinks = sideMenu.querySelectorAll('nav a');
+
+  function closeMenu() {
+    sideMenu.classList.remove('active');
+    overlay.classList.remove('active');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.add('active');
+    overlay.classList.add('active');
+  });
+  menuClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  sideMenuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetEl = document.querySelector(targetId);
+      if(targetEl) {
+        const headerOffset = document.querySelector('.site-header').offsetHeight;
+        const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
+        closeMenu();
+        setTimeout(() => {
+          window.scrollTo({ top: offsetPosition, behavior:'smooth' });
+        }, 300);
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>

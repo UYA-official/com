@@ -357,3 +357,23 @@ h3 {
     height: 20px;
   }
 }
+
+/* 게시판 관련 추가 스타일 */
+#news {
+  transition: opacity 0.3s ease;
+}
+
+#news-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#news-detail.active {
+  opacity: 1;
+  pointer-events: auto;
+}

@@ -373,3 +373,29 @@ h3 {
     height: 20px;
   }
 }
+
+/* 게시판 관련 추가 스타일 */
+.news-list {
+  transition: opacity 0.3s ease;
+}
+
+.news-list.hidden {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+.news-detail-content {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.news-detail-content.visible {
+  opacity: 1;
+  pointer-events: auto;
+  height: auto;
+}

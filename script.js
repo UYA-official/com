@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // 게시판 관련 DOM 요소들
-  const newsSection = document.getElementById('news');
-  const newsDetailSection = document.getElementById('news-detail');
+  const newsList = document.querySelector('.news-list');
+  const newsDetailContent = document.getElementById('news-detail');
   const postTitle = document.getElementById('post-title');
   const postDate = document.getElementById('post-date');
   const postContent = document.getElementById('post-content');
@@ -57,10 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetEl = document.querySelector(targetId);
 
       // 게시판 상세 페이지가 열려있다면 닫고 이동
-      if (newsDetailSection.classList.contains('active')) {
-        newsDetailSection.classList.remove('active');
-        newsSection.style.opacity = '1';
-        newsSection.style.pointerEvents = 'auto';
+      if (newsDetailContent.classList.contains('visible')) {
+        newsDetailContent.classList.remove('visible');
+        newsList.classList.remove('hidden');
       }
 
       if (targetEl && header) {
@@ -79,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 뉴스 목록 링크 클릭 이벤트
-  newsSection.addEventListener('click', (e) => {
+  newsList.addEventListener('click', (e) => {
     e.preventDefault();
     const link = e.target.closest('a');
     if (link && link.dataset.postId) {
@@ -91,15 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
         postDate.textContent = post.date;
         postContent.innerHTML = post.content;
         
-        newsSection.style.opacity = '0';
-        newsSection.style.pointerEvents = 'none';
-
-        newsDetailSection.classList.add('active');
-        
-        window.scrollTo({
-          top: newsSection.offsetTop - header.offsetHeight,
-          behavior: 'smooth'
-        });
+        // 목록을 숨기고 상세 내용을 보여줌
+        newsList.classList.add('hidden');
+        newsDetailContent.classList.add('visible');
       }
     }
   });
@@ -107,13 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // '목록으로 돌아가기' 버튼 클릭 이벤트
   backBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    newsDetailSection.classList.remove('active');
+    // 상세 내용을 숨기고 목록을 다시 보여줌
+    newsDetailContent.classList.remove('visible');
+    newsList.classList.remove('hidden');
     
-    newsSection.style.opacity = '1';
-    newsSection.style.pointerEvents = 'auto';
+    // 스크롤을 뉴스 섹션으로 이동
+    const newsSection = document.getElementById('news');
+    const headerOffset = header.offsetHeight;
+    const elementPosition = newsSection.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerOffset;
     
     window.scrollTo({
-      top: newsSection.offsetTop - header.offsetHeight,
+      top: offsetPosition,
       behavior: 'smooth'
     });
   });

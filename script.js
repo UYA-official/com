@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMenu(callback) {
     sideMenu.classList.remove('active');
     overlay.classList.remove('active');
-    if (callback) setTimeout(callback, 300);
+    if (callback) setTimeout(callback, 300); // 메뉴 닫힌 뒤 콜백
   }
 
   menuToggle.addEventListener('click', () => {

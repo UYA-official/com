@@ -4,33 +4,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuClose = document.querySelector('.menu-close');
   const overlay = document.querySelector('.overlay');
   const sideMenuLinks = sideMenu.querySelectorAll('nav a');
+  const header = document.querySelector('.site-header'); // 헤더 요소 추가
 
-  function closeMenu(callback){
+  /**
+   * 사이드 메뉴를 닫는 함수
+   * @param {function} callback - 메뉴가 닫힌 후 실행할 콜백 함수
+   */
+  function closeMenu(callback) {
     sideMenu.classList.remove('active');
     overlay.classList.remove('active');
-    if(callback) setTimeout(callback,300);
+    // CSS 트랜지션이 끝난 후 콜백 함수 실행
+    if (callback) {
+      setTimeout(callback, 300);
+    }
   }
 
-  menuToggle.addEventListener('click',()=>{
+  // 메뉴 열기 버튼 클릭 이벤트
+  menuToggle.addEventListener('click', () => {
     sideMenu.classList.add('active');
     overlay.classList.add('active');
   });
 
-  menuClose.addEventListener('click',()=>closeMenu());
-  overlay.addEventListener('click',()=>closeMenu());
+  // 메뉴 닫기 버튼 또는 오버레이 클릭 이벤트
+  menuClose.addEventListener('click', () => closeMenu());
+  overlay.addEventListener('click', () => closeMenu());
 
-  sideMenuLinks.forEach(link=>{
-    link.addEventListener('click',(e)=>{
-      e.preventDefault();
+  // 사이드 메뉴 링크 클릭 이벤트 (부드러운 스크롤)
+  sideMenuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // 기본 링크 이동 방지
       const targetId = link.getAttribute('href');
       const targetEl = document.querySelector(targetId);
-      if(targetEl){
-        const headerOffset = document.querySelector('.site-header').offsetHeight;
+
+      if (targetEl) {
+        // 헤더의 높이를 고려한 스크롤 위치 계산
+        const headerOffset = header.offsetHeight;
         const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
 
-        closeMenu(()=>{
-          window.scrollTo({top:offsetPosition,behavior:'smooth'});
+        // 메뉴를 닫은 후 스크롤 이동
+        closeMenu(() => {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         });
       }
     });

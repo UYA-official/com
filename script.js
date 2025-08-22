@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuClose = document.querySelector('.menu-close');
   const overlay = document.querySelector('.overlay');
   const sideMenuLinks = sideMenu.querySelectorAll('nav a');
-  const header = document.querySelector('.site-header'); // 헤더 요소 추가
+  const header = document.querySelector('.site-header'); // 수정된 부분: 헤더 요소를 정확히 참조합니다.
 
   /**
    * 사이드 메뉴를 닫는 함수

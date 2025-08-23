@@ -1,0 +1,68 @@
+/* 공지사항 목록 */
+main ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+main ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+main ul li:hover {
+  background: #eef6ff;
+  transform: translateX(5px);
+}
+
+main ul li a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #005bac;
+  font-weight: bold;
+}
+
+main ul li span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* 공지사항 본문 */
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 30px 0;
+  color: #003f7d;
+}
+
+/* 목록으로 돌아가기 버튼 */
+main a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background: #005bac;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+main a:hover {
+  background: #004080;
+}

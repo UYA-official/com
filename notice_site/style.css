@@ -85,3 +85,14 @@ main a:hover {
   text-decoration: underline;
   color: var(--brand); /* 강조 색상 */
 }
+
+.news li a {
+  color: #1e3a8a; /* 처음부터 글씨 보이도록 */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.news li a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}

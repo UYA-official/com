@@ -25,8 +25,12 @@ main ul li:hover {
 main ul li a {
   text-decoration: none;
   font-size: 1.1rem;
-  color: #005bac;
+  color: #1e3a8a; /* 처음부터 글씨 보이도록 진한 파랑 */
   font-weight: bold;
+}
+
+main ul li a:hover {
+  color: var(--brand); /* hover 시 강조 색상 */
 }
 
 main ul li span {
@@ -41,9 +45,12 @@ main {
   padding: 20px;
   line-height: 1.6;
   font-size: 1rem;
-  color: #333;
+  color: #333; /* 본문 항상 보이도록 */
+  visibility: visible !important; /* 혹시 숨겨지는 속성이 있으면 override */
+  display: block !important;
 }
 
+/* header */
 header h1 {
   text-align: center;
   font-size: 1.8rem;
@@ -67,25 +74,19 @@ main a:hover {
   background: #004080;
 }
 
-/* 기존 */
+/* 게시판 링크 */
 .board td a {
-  color: var(--brand);
+  color: #1e3a8a;   /* 항상 진한 파랑으로 표시 */
   font-weight: 600;
+  text-decoration: none;
 }
 
-/* 수정: 항상 잘 보이도록 */
-.board td a {
-  color: #1e3a8a;   /* 진한 파랑, 배경과 대비 높음 */
-  font-weight: 600;
-  text-decoration: none; /* 기본은 밑줄 없음 */
-}
-
-/* hover 효과는 유지 */
 .board td a:hover {
   text-decoration: underline;
-  color: var(--brand); /* 강조 색상 */
+  color: var(--brand);
 }
 
+/* 뉴스 목록 링크 */
 .news li a {
   color: #1e3a8a; /* 처음부터 글씨 보이도록 */
   font-weight: 600;

@@ -357,3 +357,29 @@ h3 {
     height: 20px;
   }
 }
+
+.board {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.board th, .board td {
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  text-align: center;
+}
+
+.board th {
+  background: var(--surface-alt);
+  font-weight: 700;
+}
+
+.board td a {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.board td a:hover {
+  text-decoration: underline;
+}

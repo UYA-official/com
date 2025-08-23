@@ -383,3 +383,22 @@ h3 {
 .board td a:hover {
   text-decoration: underline;
 }
+
+/* 기존 */
+.board td a {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* 수정: 항상 잘 보이도록 */
+.board td a {
+  color: #1e3a8a;   /* 진한 파랑, 배경과 대비 높음 */
+  font-weight: 600;
+  text-decoration: none; /* 기본은 밑줄 없음 */
+}
+
+/* hover 효과는 유지 */
+.board td a:hover {
+  text-decoration: underline;
+  color: var(--brand); /* 강조 색상 */
+}

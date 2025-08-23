@@ -174,6 +174,24 @@ h3 {
   margin-right: 10px;
 }
 
+/* 뉴스 링크 최종 수정 */
+.news li a {
+  color: #1e3a8a;                /* 글씨 색상 */
+  font-weight: 600;
+  text-decoration: none;          /* 밑줄 제거 */
+  background: transparent !important; /* 배경 제거 */
+  border-radius: 0;               /* 모서리 제거 */
+  padding: 0;                     /* 불필요한 패딩 제거 */
+  outline: none;                  /* 클릭 시 아웃라인 제거 */
+  -webkit-tap-highlight-color: transparent; /* 모바일 터치 시 하이라이트 제거 */
+}
+
+.news li a:hover {
+  color: var(--brand);            /* 강조 색상 */
+  text-decoration: underline;     /* 밑줄 표시 */
+  background: transparent !important; /* 호버 시에도 배경 제거 */
+}
+
 /* 히어로 */
 .hero {
   background: linear-gradient(135deg, rgba(59, 130, 246, .12), rgba(139, 92, 246, .12), rgba(236, 72, 153, .12));
@@ -265,7 +283,7 @@ h3 {
   padding: 60px 20px;
   flex-direction: column;
   gap: 20px;
-  z-index: 1001; /* 사이드 메뉴가 오버레이 위에 있도록 z-index를 높게 설정 */
+  z-index: 1001;
   transition: right .3s ease;
   display: flex;
 }
@@ -308,7 +326,7 @@ h3 {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 999; /* 오버레이가 사이드 메뉴 아래에 오도록 z-index를 낮춤 */
+  z-index: 999;
   opacity: 0;
   pointer-events: none;
   transition: opacity .3s;
@@ -376,40 +394,12 @@ h3 {
 }
 
 .board td a {
-  color: var(--brand);
-  font-weight: 600;
-}
-
-.board td a:hover {
-  text-decoration: underline;
-}
-
-/* 기존 */
-.board td a {
-  color: var(--brand);
-  font-weight: 600;
-}
-
-/* 수정: 항상 잘 보이도록 */
-.board td a {
-  color: #1e3a8a;   /* 진한 파랑, 배경과 대비 높음 */
-  font-weight: 600;
-  text-decoration: none; /* 기본은 밑줄 없음 */
-}
-
-/* hover 효과는 유지 */
-.board td a:hover {
-  text-decoration: underline;
-  color: var(--brand); /* 강조 색상 */
-}
-.news li a {
-  color: #1e3a8a; /* 처음부터 글씨 보이도록 */
+  color: #1e3a8a;
   font-weight: 600;
   text-decoration: none;
 }
 
-.news li a:hover {
-  color: var(--brand);
+.board td a:hover {
   text-decoration: underline;
+  color: var(--brand);
 }
-

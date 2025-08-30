@@ -1,0 +1,24 @@
+
+[자동 점검/개선 내역 - 2025-08-30]
+
+1) HTML 접근성/SEO 기본값 보강
+ - <meta charset>, viewport, description 보완
+ - <html lang="ko"> 확인/추가
+ - 본문 바로가기(skip-link) 추가 및 main에 id 부여
+ - target="_blank" 링크에 rel="noopener" 자동 추가
+ - 모든 <img>에 alt 속성 누락 시 빈 문자열로 보완
+ - 페이지에 h1이 없을 경우 화면숨김(sr-only) h1 자동 추가
+
+2) CSS 공통 개선
+ - 포커스 가시성(:focus-visible) 및 skip-link 스타일 추가
+ - 링크 밑줄 가독성 개선
+ - sr-only 유틸리티 클래스 추가
+
+3) 공지사항 페이지 링크 가시성 오류 가능성 점검
+ - color: transparent/opacity:0 규칙 발견 시 안전값으로 자동 교체
+
+4) 검색/배포 보조 파일
+ - robots.txt, sitemap.xml 자동 생성
+ - 404.html 추가
+
+※ 기존 레이아웃/디자인은 유지하도록 보수적으로 작업했습니다.

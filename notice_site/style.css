@@ -1,0 +1,147 @@
+/* 공지사항 목록 */
+main ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+main ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+main ul li:hover {
+  background: #eef6ff;
+  transform: translateX(5px);
+}
+
+main ul li a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #1e3a8a;                    /* 항상 글씨 보이도록 진한 파랑 */
+  font-weight: bold;
+  background: transparent !important; /* 배경 제거 */
+  outline: none;                      /* 클릭 시 아웃라인 제거 */
+  -webkit-tap-highlight-color: #333; /* 모바일 터치 하이라이트 제거 */
+}
+
+main ul li a:hover {
+  color: var(--brand);                /* hover 시 강조 색상 */
+  background: transparent !important;  /* 호버 시에도 배경 제거 */
+}
+
+main ul li span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* 공지사항 본문 */
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333; /* 본문 항상 보이도록 */
+  visibility: visible !important; /* 혹시 숨겨지는 속성이 있으면 override */
+  display: block !important;
+}
+
+/* header */
+header h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 30px 0;
+  color: #003f7d;
+}
+
+/* 목록으로 돌아가기 버튼 */
+main a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background: #005bac;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+main a:hover {
+  background: #004080;
+}
+
+/* 게시판 링크 */
+.board td a {
+  color: #1e3a8a;   /* 항상 진한 파랑으로 표시 */
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent !important; /* 배경 제거 */
+  outline: none;
+  -webkit-tap-highlight-color: #333;
+}
+
+.board td a:hover {
+  text-decoration: underline;
+  color: var(--brand);
+  background: transparent !important;
+}
+
+/* 뉴스 목록 링크 */
+.news li a {
+  color: #1e3a8a; /* 처음부터 글씨 보이도록 */
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent !important; /* 배경 제거 */
+  outline: none;
+  -webkit-tap-highlight-color: #333;
+}
+
+.news li a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+  background: transparent !important;
+}
+
+/* 접근성 향상 공통 스타일 */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus, .skip-link:active {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 8px;
+  padding: 8px 12px;
+  border: 2px solid currentColor;
+  border-radius: 8px;
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+}
+/* 링크 대비 보완 */
+a { text-decoration-thickness: .08em; text-underline-offset: .15em; }
